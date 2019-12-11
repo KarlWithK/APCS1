@@ -13,8 +13,7 @@ public class Histogram {
 			int index = 0;
 			for(int check = 10; check < readInt && check != readInt; check+= 10)
 				index++;
-			nums[index]++;
-			System.out.println("input more nums, -1 to end");
+			nums[index]++; System.out.println("input more nums, -1 to end");
 			readInt = Keyboard.readInt();
 		}
 
