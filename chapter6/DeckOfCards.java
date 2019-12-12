@@ -16,12 +16,12 @@ public class DeckOfCards {
         }
     }
 
-    public void ShuffleDeck() {
+    public void shuffleDeck() {
         for (int index = 0; index < 52; index++) {
-            int RandomInt = (int) (Math.random() * 51) + 1;
+            int randomInt = (int) (Math.random() * 51) + 1;
             Card temp = Cards.get(index);
-            Cards.set(index, Cards.get(RandomInt));
-            Cards.set(RandomInt, temp);
+            Cards.set(index, Cards.get(randomInt));
+            Cards.set(randomInt, temp);
         }
     }
 
@@ -34,9 +34,9 @@ public class DeckOfCards {
         return count;
     }
 
-    public String Deal(int num) {
+    public Card deal(int num) {
         Cards.get(num).changeStatus();
-        return Cards.get(num).toString();
+        return Cards.get(num);
     }
 
 }
