@@ -11,17 +11,18 @@ public class Histogram {
 				readInt = Keyboard.readInt();
 			}
 			int index = 0;
-			for(int check = 10; check < readInt && check != readInt; check+= 10)
+			for (int check = 10; check < readInt && check != readInt; check += 10)
 				index++;
-			nums[index]++; System.out.println("input more nums, -1 to end");
+			nums[index]++;
+			System.out.println("input more nums, -1 to end");
 			readInt = Keyboard.readInt();
 		}
 
-		for (int printLine = 0; printLine < nums.length;printLine++) {
+		for (int printLine = 0; printLine < nums.length; printLine++) {
 			int min = printLine * 10 + 1;
 			int max = printLine * 10 + 10;
 			System.out.print(min + " - " + max + "   \t|   ");
-			for (int stars = 0; stars < nums[printLine];stars++)
+			for (int stars = 0; stars < nums[printLine]; stars++)
 				System.out.print("*");
 			System.out.print("\n");
 		}
