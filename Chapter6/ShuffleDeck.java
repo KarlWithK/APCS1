@@ -8,8 +8,8 @@ public class ShuffleDeck {
 		}
 
 		// Old code
-		Deck oldDeck = new Deck();
-		oldDeck.shuffle();
+		// Deck oldDeck = new Deck();
+		// oldDeck.shuffle();
 		// for (int index = 0; index < 52; index++) {
 		// 	System.out.println(oldDeck.dealOne(index));
 		// 	System.out.println(oldDeck.report());
