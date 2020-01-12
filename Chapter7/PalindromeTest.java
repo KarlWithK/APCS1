@@ -8,11 +8,11 @@ public class PalindromeTest {
 	}
 
 	public static boolean PaliTest(String Word) {
-		int right = Word.length() - 1;
+		int end = Word.length() - 1;
 		if (Word.length() == 0 || Word.length() == 1)
 			return true;
-		if (Word.charAt(0) == Word.charAt(right))
-			return PaliTest(Word.substring(1, right));
+		if (Word.charAt(0) == Word.charAt(end))
+			return PaliTest(Word.substring(1, end));
 		return false;
 	}
 }
