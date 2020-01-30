@@ -6,20 +6,26 @@ public class MergeSort {
 		int[] n1 = { 1, 4, 5, 10 };
 		int[] n2 = { 2, 6, 7, 8, 22 };
 		System.out.println("Sort 1");
-		for (int s : merge(n1, n2)) {
+		for (int s : merge(n1, n2))
 			System.out.println(s);
-		}
+
+		System.out.println();
 
 		int[] n3 = { 4, 1, 1000, 3, 6, 8, 2, 7, 5, 9 };
 		System.out.println("Basic Array merge sort");
 		for (int num : mergeSort(n3))
 			System.out.println(num);
 
-		String n4 = "4,5,1,100,0,4,2,8,9";
+		System.out.println();
+
+		String n4 = "4, 5, 1, 100, 0, 4, 2, 8, 9";
 		// String n5 = Keyboard.readString();
 		System.out.println("Basic String merge sort");
 		for (int num : stringMergeSort(n4))
 			System.out.println(num);
+
+		System.out.println();
+
 		ArrayList<Integer> n6 = new ArrayList<Integer>();
 		ArrayList<Integer> n7 = new ArrayList<Integer>();
 		n6.add(1);
@@ -28,9 +34,8 @@ public class MergeSort {
 		n7.add(7);
 		n7.add(9);
 		System.out.println("ArrayList merge");
-		for (int num : arrayListMerge(n6, n7)) {
-			System.out.println(num);
-		}
+		System.out.println(arrayListMerge(n6, n7));
+		System.out.println();
 
 		ArrayList<Integer> n8 = new ArrayList<Integer>();
 		n8.add(111);
@@ -91,11 +96,10 @@ public class MergeSort {
 	}
 
 	public static int[] stringMergeSort(String Array) {
-		String[] stringArray = Array.split(",");
+		String[] stringArray = Array.replaceAll("\\s+","").split(",");
 		int[] intArray = new int[stringArray.length];
-		for (int index = 0; index < stringArray.length; index++) {
+		for (int index = 0; index < stringArray.length; index++)
 			intArray[index] = Integer.parseInt(stringArray[index]);
-		}
 		return mergeSort(intArray);
 	}
 
