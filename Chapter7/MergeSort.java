@@ -21,7 +21,7 @@ public class MergeSort {
 		String n4 = "4, 5, 1, 100, 0, 4, 2, 8, 9";
 		// String n5 = Keyboard.readString();
 		System.out.println("Basic String merge sort");
-		for (int num : stringMergeSort(n4))
+		for (int num : mergeSort(n4))
 			System.out.println(num);
 
 		System.out.println();
@@ -34,7 +34,7 @@ public class MergeSort {
 		n7.add(7);
 		n7.add(9);
 		System.out.println("ArrayList merge");
-		System.out.println(arrayListMerge(n6, n7));
+		System.out.println(merge(n6, n7));
 		System.out.println();
 
 		ArrayList<Integer> n8 = new ArrayList<Integer>();
@@ -44,7 +44,7 @@ public class MergeSort {
 		n8.add(7);
 		n8.add(9);
 		System.out.println("ArrayList mergeSort");
-		System.out.println(arrayListMergeSort(n8));
+		System.out.println(mergeSort(n8));
 	}
 
 	public static int[] merge(int[] arrayLo, int[] arrayHi) {
@@ -95,15 +95,15 @@ public class MergeSort {
 		}
 	}
 
-	public static int[] stringMergeSort(String Array) {
-		String[] stringArray = Array.replaceAll("\\s+","").split(",");
+	public static int[] mergeSort(String Array) {
+		String[] stringArray = Array.replaceAll("\\s+", "").split(",");
 		int[] intArray = new int[stringArray.length];
 		for (int index = 0; index < stringArray.length; index++)
 			intArray[index] = Integer.parseInt(stringArray[index]);
 		return mergeSort(intArray);
 	}
 
-	public static ArrayList<Integer> arrayListMerge(ArrayList<Integer> arrayLo, ArrayList<Integer> arrayHi) {
+	public static ArrayList<Integer> merge(ArrayList<Integer> arrayLo, ArrayList<Integer> arrayHi) {
 		ArrayList<Integer> mergeArray = new ArrayList<Integer>();
 		int indexLo = 0, indexHi = 0;
 
@@ -122,7 +122,7 @@ public class MergeSort {
 		return mergeArray;
 	}
 
-	public static ArrayList<Integer> arrayListMergeSort(ArrayList<Integer> array) {
+	public static ArrayList<Integer> mergeSort(ArrayList<Integer> array) {
 		if (array.size() < 2)
 			return array;
 		else {
@@ -131,7 +131,7 @@ public class MergeSort {
 			ArrayList<Integer> arrayHi = new ArrayList<Integer>();
 			arrayLo.addAll(array.subList(0, middle));
 			arrayHi.addAll(array.subList(middle, array.size()));
-			return arrayListMerge(arrayListMergeSort(arrayLo), arrayListMergeSort(arrayHi));
+			return merge(mergeSort(arrayLo), mergeSort(arrayHi));
 		}
 
 	}
