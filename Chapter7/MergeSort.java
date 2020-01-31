@@ -3,6 +3,7 @@ import cs1.Keyboard;
 
 public class MergeSort {
 	public static void main(String[] args) {
+
 		int[] n1 = { 1, 4, 5, 10 };
 		int[] n2 = { 2, 6, 7, 8, 22 };
 		System.out.println("Sort 1");
@@ -23,6 +24,13 @@ public class MergeSort {
 		System.out.println("Basic String merge sort");
 		for (int num : mergeSort(n4))
 			System.out.println(num);
+
+		System.out.println();
+
+		String[] n = {"Hello", "hello", "I", "Lost", "My", "Wallet"};
+		System.out.println("True String sort");
+		for (String word : mergeSort(n, true))
+			System.out.println(word);
 
 		System.out.println();
 
@@ -101,6 +109,57 @@ public class MergeSort {
 		for (int index = 0; index < stringArray.length; index++)
 			intArray[index] = Integer.parseInt(stringArray[index]);
 		return mergeSort(intArray);
+	}
+
+	public static String[] mergeSort(String[] Values, boolean trueStringSort) {
+		if (Values.length < 2)
+			return Values;
+		else {
+			int middle = Values.length / 2, secondHalf = Values.length - middle;
+			String[] arrayLo = new String[middle];
+			String[] arrayHi = new String[secondHalf];
+			int indexLo = 0, indexHi = 0;
+			
+			for (int index = 0; index < Values.length; index++) {
+				if (index < middle) {
+					arrayLo[indexLo] = Values[index];
+					indexLo++;
+				} else {
+					arrayHi[indexHi] = Values[index];
+					indexHi++;
+				}
+			}
+
+			return merge(mergeSort(arrayLo, true), mergeSort(arrayHi, true));
+		}
+	}
+
+	public static String[] merge(String[] arrayLo, String[] arrayHi) {
+		String[] mergeArray = new String[arrayLo.length + arrayHi.length];
+		int indexLo = 0, indexHi = 0, index = 0;
+
+		while (indexLo < arrayLo.length && indexHi < arrayHi.length) {
+			if (arrayLo[indexLo].compareTo(arrayHi[indexHi]) < 0) {
+				mergeArray[index] = arrayLo[indexLo];
+				indexLo++;
+			} else {
+				mergeArray[index] = arrayHi[indexHi];
+				indexHi++;
+			}
+			index++;
+		}
+
+		for (; index < mergeArray.length; index++) {
+			if (indexHi != arrayHi.length) {
+				mergeArray[index] = arrayHi[indexHi];
+				indexHi++;
+			} else {
+				mergeArray[index] = arrayLo[indexLo];
+				indexLo++;
+			}
+		}
+
+		return mergeArray;
 	}
 
 	public static ArrayList<Integer> merge(ArrayList<Integer> arrayLo, ArrayList<Integer> arrayHi) {
