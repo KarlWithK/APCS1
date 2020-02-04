@@ -14,7 +14,8 @@ public class QuickSort {
 
 			for (int j = low; j < high; j++) {
 				if (arr[j] < pivot) {
-					placeholder = arr[index]; arr[index] = arr[j];
+					placeholder = arr[index]; 
+					arr[index] = arr[j];
 					arr[j] = placeholder;
 					index++;
 				}
