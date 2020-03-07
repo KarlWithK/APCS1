@@ -4,15 +4,19 @@ public class DeckOfCards {
 	private ArrayList<Card> Cards = new ArrayList<Card>();
 
 	public DeckOfCards() {
+		int type = 0;
 		for (int currentCard = 0; currentCard < 52; currentCard++) {
-			if (currentCard < 13)
-				Cards.add(new Card(0, currentCard));
-			else if (currentCard < 26)
-				Cards.add(new Card(1, currentCard - 13));
-			else if (currentCard < 39)
-				Cards.add(new Card(2, currentCard - 26));
-			else
-				Cards.add(new Card(3, currentCard - 39));
+			if (currentCard % 13 == 0 && currentCard != 0)
+				type++;
+			Cards.add(new Card(type, currentCard - (type * 13)));
+			// if (currentCard < 13)
+			// Cards.add(new Card(0, currentCard));
+			// else if (currentCard < 26)
+			// Cards.add(new Card(1, currentCard - 13));
+			// else if (currentCard < 39)
+			// Cards.add(new Card(2, currentCard - 26));
+			// else
+			// Cards.add(new Card(3, currentCard - 39));
 		}
 	}
 

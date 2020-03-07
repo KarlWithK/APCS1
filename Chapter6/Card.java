@@ -3,7 +3,7 @@ public class Card {
 	private int face;
 	private boolean drawn = false;
 
-	public Card (int suitNum, int faceNum) {
+	public Card(int suitNum, int faceNum) {
 		if (suitNum < 4 && suitNum > -1) {
 			suit = suitNum;
 		} else {
@@ -17,7 +17,7 @@ public class Card {
 		}
 	}
 
-	public Card () {
+	public Card() {
 		suit = (int) (Math.random() * 3) + 1;
 		face = (int) (Math.random() * 12) + 1;
 	}
@@ -39,47 +39,9 @@ public class Card {
 	}
 
 	public String toString() {
-		String result;
-
-		if (face == 0) {
-			result = "Ace of ";
-		} else if (face == 1) {
-			result = "Two of ";
-		} else if (face == 2) {
-			result = "Three of ";
-		} else if (face == 3) {
-			result = "Four of ";
-		} else if (face == 4) {
-			result = "Five of ";
-		} else if (face == 5) {
-			result = "Six of ";
-		} else if (face == 6) {
-			result = "Seven of ";
-		} else if (face == 7) {
-			result = "Eight of ";
-		} else if (face == 8) {
-			result = "Nine of ";
-		} else if (face == 9) {
-			result = "Ten of ";
-		} else if (face == 10) {
-			result = "Jack of ";
-		} else if (face == 11) {
-			result = "King of ";
-		} else {
-			result = "Queen of ";
-		}
-
-		if (suit == 0) {
-			result += "Spades";
-		} else if (suit == 1) {
-			result += "Diamonds";
-		} else if (suit == 2) {
-			result += "Clubs";
-		} else {
-			result += "Hearts";
-		}
-
-		return result;
+		String[] faces = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "King", "Queen"};
+		String[] suits = {"Spades", "Diamonds", "Clubs", "Hearts"};
+		return faces[this.face] + " of " + suits[this.suit];
 	}
 
 }
