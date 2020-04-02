@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class MergeSort {
         public static void main(String[] args) {
-                ArrayList<String> hello = new ArrayList<String>();
                 int[] n1 = { 1, 4, 5, 10 };
                 int[] n2 = { 2, 6, 7, 8, 22 };
                 System.out.println("Sort 1");

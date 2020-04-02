@@ -1,4 +1,5 @@
-public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
+// public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
+public class Node<T> {
 	public T data;
 	public Node<T> nextNode;
 
@@ -10,7 +11,7 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
 		this.data = data;
 	}
 	
-	public void setNode(Node<T> nextNode) {
+	public void setNext(Node<T> nextNode) {
 		this.nextNode = nextNode;
 	}
 
@@ -26,9 +27,9 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
 				
 	// }
 
-	public int compareTo(Node<T> anotherNode) {
-		return getData().compareTo(anotherNode.getData());
-	}
+	// public int compareTo(Node<T> anotherNode) {
+	// 	return getData().compareTo(anotherNode.getData());
+	// }
 
 	public String toString() {
 		return data + "";
