@@ -19,6 +19,7 @@ public class Coin {
 		flip();
 	}
 
+
 	// -----------------------------------------------------------------
 	// Flips the coin by randomly choosing a face value.
 	// -----------------------------------------------------------------
@@ -29,7 +30,7 @@ public class Coin {
 	// -----------------------------------------------------------------
 	// Returns true if the current face of the coin is heads.
 	// -----------------------------------------------------------------
-	public boolean jsHeads() {
+	public boolean isHeads() {
 		return (face == HEADS);
 	}
 

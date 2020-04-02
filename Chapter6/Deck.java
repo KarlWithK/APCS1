@@ -12,7 +12,7 @@ public class Deck {
 
 	public void shuffle() {
 		for (int currentCard = 0; currentCard < Cards.length; currentCard++) {
-			int random = (int) (Math.random() * 52);
+			int random = (int) (Math.random() * 52) + 1;
 			Card temp = Cards[currentCard];
 			Cards[currentCard] = Cards[random];
 			Cards[random] = temp;

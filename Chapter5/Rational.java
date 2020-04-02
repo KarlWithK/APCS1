@@ -4,8 +4,7 @@
 //
 // Represents one rational number with a numerator and denominator.
 //********************************************************************
-public class Rational implements Comparable
-{
+public class Rational implements Comparable<Rational>{
 	private int numerator, denominator;
 
 	//-----------------------------------------------------------------
@@ -164,11 +163,10 @@ public class Rational implements Comparable
 		return num1;
 	}
 
-	public int compareTo(Object fraction) {
-		Rational frat = (Rational) fraction;
+	public int compareTo(Rational fraction) {
 		double toleranceLevel = 0.0001;
-		double differenceNum = getNumerator() - frat.getNumerator();
-		double differenceDeno = getDenominator() - frat.getDenominator();
+		double differenceNum = getNumerator() - fraction.getNumerator();
+		double differenceDeno = getDenominator() - fraction.getDenominator();
 		if (differenceNum >= 0 && differenceNum <= toleranceLevel && differenceDeno >= 0 && differenceDeno <= toleranceLevel)
 			return 0;
 		else if (differenceNum >= toleranceLevel && differenceNum > 0 || differenceDeno >= toleranceLevel && differenceDeno < 0 )

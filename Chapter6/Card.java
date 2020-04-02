@@ -31,7 +31,7 @@ public class Card {
 	}
 
 	public void changeStatus() {
-		drawn = true;
+		this.drawn = true;
 	}
 
 	public boolean checkStatus() {
