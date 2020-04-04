@@ -3,29 +3,31 @@ public class FullLink<T> {
 	private Node<T> head;
 	private Node<T> tail;
 
+	// private static class Node<T extends Comparable<Node<T>> implments
+	// Comparable<Node<T>>
 	private static class Node<T> {
 		public T data;
-		public Node<T> nextNode;
-		public Node<T> prevNode;
+		public Node<T> next;
+		public Node<T> prev;
 
 		public Node(T data) {
 			this.data = data;
 		}
 
-		public boolean equals(Node<T> anotherNode) {
-			return this.data.equals(anotherNode.data);
-		}
+		// public boolean equals(Node<T> anotherNode) {
+		// return this.data.equals(anotherNode.data);
+		// }
 
 		// public int compareTo(Node<T> anotherNode) {
 		// return getData().compareTo(anotherNode.getData());
 		// }
 
 		public String toString() {
-			return data + "";
+			return data.toString() + "";
 		}
 	}
 
-	public void setHead(T data) {
+	private void setHead(T data) {
 		Node<T> startNode = new Node<T>(data);
 		this.head = startNode;
 		this.tail = startNode;
@@ -37,8 +39,8 @@ public class FullLink<T> {
 			setHead(data);
 		else {
 			Node<T> newHead = new Node<T>(data);
-			newHead.nextNode = this.head;
-			head.prevNode = newHead;
+			newHead.next = this.head;
+			head.prev = newHead;
 			this.head = newHead;
 			size++;
 		}
@@ -49,9 +51,9 @@ public class FullLink<T> {
 			setHead(data);
 		else {
 			Node<T> nextNode = new Node<T>(data);
-			tail.nextNode = nextNode;
-			nextNode.prevNode = nextNode;
-			tail = nextNode;
+			tail.next = nextNode;
+			nextNode.prev = nextNode;
+			this.tail = nextNode;
 		}
 		size++;
 	}
@@ -67,9 +69,9 @@ public class FullLink<T> {
 		else {
 			Node<T> newNode = new Node<T>(data);
 			Node<T> preNode = getNoteAt(index - 1);
-			if (preNode.nextNode != null)
-				newNode.nextNode = preNode.nextNode;
-			preNode.nextNode = newNode;
+			if (preNode.next != null)
+				newNode.next = preNode.next;
+			preNode.next = newNode;
 			size++;
 		}
 	}
@@ -85,7 +87,7 @@ public class FullLink<T> {
 		else {
 			Node<T> current = this.head;
 			for (int i = 0; i < index; i++) {
-				current = current.nextNode;
+				current = current.next;
 			}
 			return current;
 		}
@@ -99,15 +101,15 @@ public class FullLink<T> {
 
 		if (index == 0) {
 			temp = this.head;
-			this.head = temp.nextNode;
+			this.head = temp.next;
 		} else if (index == this.size - 1) {
-			temp = tail.prevNode;
+			temp = tail.prev;
 			this.tail = temp;
-			temp.nextNode = null;
+			temp.next = null;
 		} else {
 			Node<T> preNode = getNoteAt(index - 1);
-			temp = preNode.nextNode;
-			preNode.nextNode = temp.nextNode;
+			temp = preNode.next;
+			preNode.next = temp.next;
 		}
 		size--;
 		return true;
@@ -123,16 +125,16 @@ public class FullLink<T> {
 
 		Node<T> popped;
 		if (index == 0) {
-			popped = this.size;
-			this.head = popped.nextNode;
+			popped = this.head;
+			this.head = popped.next;
 		} else if (index == this.size - 1) {
 			popped = this.tail;
-			tail = tail.prevNode;
-			tail.nextNode = null;
+			this.tail = tail.prev;
+			tail.next = null;
 		} else {
 			Node<T> preNode = getNoteAt(index - 1);
-			popped = preNode.nextNode;
-			preNode.nextNode = popped.nextNode;
+			popped = preNode.next;
+			preNode.next = popped.next;
 		}
 
 		size--;
@@ -142,7 +144,7 @@ public class FullLink<T> {
 	public boolean deleteNode(Node<T> target) {
 		Node<T> current = this.head;
 		while (!(current == target)) {
-			current = current.nextNode;
+			current = current.next;
 			if (current == this.tail)
 				return false;
 		}
@@ -179,7 +181,7 @@ public class FullLink<T> {
 			if (current.data.equals(target))
 				return index;
 			else {
-				current = current.nextNode;
+				current = current.next;
 				index++;
 			}
 		}
@@ -201,6 +203,7 @@ public class FullLink<T> {
 	public void clear() {
 		this.size = 0;
 		this.head = null;
+		this.tail = null;
 	}
 
 	public int getSize() {
@@ -212,7 +215,7 @@ public class FullLink<T> {
 		Node<T> current = this.head;
 		while (current != null) {
 			result += current.toString() + " ";
-			current = current.nextNode;
+			current = current.next;
 		}
 		return result;
 	}
