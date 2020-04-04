@@ -1,7 +1,29 @@
-public class LList<T> {
+public class FullLink<T> {
 	private int size = 0;
 	private Node<T> head;
 	private Node<T> tail;
+
+	private static class Node<T> {
+		public T data;
+		public Node<T> nextNode;
+		public Node<T> prevNode;
+
+		public Node(T data) {
+			this.data = data;
+		}
+
+		public boolean equals(Node<T> anotherNode) {
+			return this.data.equals(anotherNode.data);
+		}
+
+		// public int compareTo(Node<T> anotherNode) {
+		// return getData().compareTo(anotherNode.getData());
+		// }
+
+		public String toString() {
+			return data + "";
+		}
+	}
 
 	public void setHead(T data) {
 		Node<T> startNode = new Node<T>(data);
@@ -15,113 +37,117 @@ public class LList<T> {
 			setHead(data);
 		else {
 			Node<T> newHead = new Node<T>(data);
-			newHead.setNext(this.head);
-			head.setPrev(newHead);
+			newHead.nextNode = this.head;
+			head.prevNode = newHead;
 			this.head = newHead;
 			size++;
 		}
 	}
 
 	public void insert(T data) {
-		if (getHead() == null)
+		if (this.head == null)
 			setHead(data);
 		else {
 			Node<T> nextNode = new Node<T>(data);
-			tail.setNext(nextNode);
-			nextNode.setPrev(tail);
+			tail.nextNode = nextNode;
+			nextNode.prevNode = nextNode;
 			tail = nextNode;
 		}
 		size++;
 	}
 
 	public void insert(T data, int index) {
-		if (index > getSize() || index < 0)
+		if (index > this.size || index < 0)
 			throw new IndexOutOfBoundsException("Invalid index");
 
 		if (index == 0)
 			insertHead(data);
-		else if (index == getSize())
+		else if (index == this.size)
 			insert(data);
 		else {
 			Node<T> newNode = new Node<T>(data);
 			Node<T> preNode = getNoteAt(index - 1);
-			if (preNode.getNext() != null)
-				newNode.setNext(preNode.getNext());
-			preNode.setNext(newNode);
+			if (preNode.nextNode != null)
+				newNode.nextNode = preNode.nextNode;
+			preNode.nextNode = newNode;
 			size++;
 		}
 	}
 
-	public Node<T> getNoteAt(int index) {
-		if (index > getSize() - 1 || index < 0)
+	private Node<T> getNoteAt(int index) {
+		if (index > this.size - 1 || index < 0)
 			throw new IndexOutOfBoundsException("Invalid index");
 
 		if (index == 0)
-			return getHead();
-		else if (index == getSize() - 1)
-			return getTail();
+			return this.head;
+		else if (index == this.size - 1)
+			return this.tail;
 		else {
-			Node<T> current = getHead();
+			Node<T> current = this.head;
 			for (int i = 0; i < index; i++) {
-				current = current.getNext();
+				current = current.nextNode;
 			}
 			return current;
 		}
 	}
 
 	public boolean deleteAt(int index) {
-		if (index > getSize() - 1 || index < 0)
+		if (index > this.size - 1 || index < 0)
 			return false;
 
 		Node<T> temp;
 
 		if (index == 0) {
-			temp = getHead();
-			this.head = temp.getNext();
-		} else if (index == getSize() - 1) {
-			temp = tail.getPrev();
+			temp = this.head;
+			this.head = temp.nextNode;
+		} else if (index == this.size - 1) {
+			temp = tail.prevNode;
 			this.tail = temp;
-			temp.setNext(null);
+			temp.nextNode = null;
 		} else {
 			Node<T> preNode = getNoteAt(index - 1);
-			temp = preNode.getNext();
-			preNode.setNext(temp.getNext());
+			temp = preNode.nextNode;
+			preNode.nextNode = temp.nextNode;
 		}
 		size--;
 		return true;
 	}
 
-	public Node<T> pop(int index) {
-		if (index > getSize() - 1 || index < 0)
+	public T show(int index) {
+		return getNoteAt(index).data;
+	}
+
+	public T pop(int index) {
+		if (index > this.size - 1 || index < 0)
 			throw new IndexOutOfBoundsException("Invalid index");
 
 		Node<T> popped;
 		if (index == 0) {
-			popped = getHead();
-			this.head = popped.getNext();
-		} else if (index == getSize() - 1) {
+			popped = this.size;
+			this.head = popped.nextNode;
+		} else if (index == this.size - 1) {
 			popped = this.tail;
-			tail = tail.getPrev();
-			tail.setNext(null);
+			tail = tail.prevNode;
+			tail.nextNode = null;
 		} else {
 			Node<T> preNode = getNoteAt(index - 1);
-			popped = preNode.getNext();
-			preNode.setNext(popped.getNext());
+			popped = preNode.nextNode;
+			preNode.nextNode = popped.nextNode;
 		}
 
 		size--;
-		return popped;
+		return popped.data;
 	}
 
 	public boolean deleteNode(Node<T> target) {
-		Node<T> current = getHead();
+		Node<T> current = this.head;
 		while (!(current == target)) {
-			current = current.getNext();
+			current = current.nextNode;
 			if (current == this.tail)
 				return false;
 		}
 
-		int nodeLocation = indexOf(current.getData());
+		int nodeLocation = indexOf(current.data);
 		deleteAt(nodeLocation);
 		return true;
 
@@ -135,7 +161,7 @@ public class LList<T> {
 	}
 
 	public void changeDataAt(T newData, int index) {
-		getNoteAt(index).setData(newData);
+		getNoteAt(index).data = newData;
 	}
 
 	// public Node<T> getLastNode() {
@@ -146,26 +172,26 @@ public class LList<T> {
 	// return current;
 	// }
 
-	public int indexOf(T data) {
+	public int indexOf(T target) {
 		int index = 0;
-		Node<T> current = getHead();
+		Node<T> current = this.head;
 		while (current != this.tail) {
-			if (current.getData().equals(data))
+			if (current.data.equals(target))
 				return index;
 			else {
-				current = current.getNext();
+				current = current.nextNode;
 				index++;
 			}
 		}
 		return -1;
 	}
 
-	public Node<T> getHead() {
-		return this.head;
+	public T getHead() {
+		return this.head.data;
 	}
 
-	public Node<T> getTail() {
-		return this.tail;
+	public T getTail() {
+		return this.tail.data;
 	}
 
 	public boolean isEmpty() {
@@ -186,7 +212,7 @@ public class LList<T> {
 		Node<T> current = this.head;
 		while (current != null) {
 			result += current.toString() + " ";
-			current = current.getNext();
+			current = current.nextNode;
 		}
 		return result;
 	}

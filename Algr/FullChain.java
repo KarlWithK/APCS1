@@ -1,6 +1,6 @@
-public class Chain {
+public class FullChain {
 	public static void main(String[] args) {
-		LList<Integer> nums = new LList<Integer>();
+		FullLink<Integer> nums = new FullLink<Integer>();
 		nums.setHead(5);
 		nums.insert(12);
 		System.out.println(nums);
@@ -10,7 +10,7 @@ public class Chain {
 		System.out.println(nums);
 		nums.insert(50,0);
 		System.out.println(nums);
-		Node<Integer> two = nums.getNoteAt(2);
+		Integer two = nums.show(2);
 		nums.insert(100, 1);
 		System.out.println(nums);
 		nums.changeDataAt(64, 1);
@@ -25,7 +25,7 @@ public class Chain {
 		System.out.println(nums);
 		nums.changeDataAt(100, 2);
 		System.out.println(nums);
-		Node<Integer> popped = nums.pop(3);
+		Integer popped = nums.pop(3);
 		System.out.println(popped);
 		nums.clear();
 	}
