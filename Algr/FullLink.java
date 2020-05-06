@@ -1,7 +1,11 @@
 public class FullLink<T> {
-	private int size = 0;
+	private int size;
 	private Node<T> head;
 	private Node<T> tail;
+
+	public FullLink() {
+		this.size = 0;
+	}
 
 	// private static class Node<T extends Comparable<Node<T>> implments
 	// Comparable<Node<T>>
@@ -39,7 +43,7 @@ public class FullLink<T> {
 			setHead(data);
 		else {
 			Node<T> newHead = new Node<T>(data);
-			newHead.next = this.head;
+			newHead.next = head;
 			head.prev = newHead;
 			this.head = newHead;
 			size++;
@@ -50,10 +54,10 @@ public class FullLink<T> {
 		if (this.head == null)
 			setHead(data);
 		else {
-			Node<T> nextNode = new Node<T>(data);
-			tail.next = nextNode;
-			nextNode.prev = nextNode;
-			this.tail = nextNode;
+			Node<T> newNode = new Node<T>(data);
+			tail.next = newNode;
+			newNode.prev = tail;
+			this.tail = newNode;
 		}
 		size++;
 	}
@@ -100,7 +104,7 @@ public class FullLink<T> {
 		Node<T> temp;
 
 		if (index == 0) {
-			temp = this.head;
+			temp = head;
 			this.head = temp.next;
 		} else if (index == this.size - 1) {
 			temp = tail.prev;
@@ -126,7 +130,7 @@ public class FullLink<T> {
 		Node<T> popped;
 		if (index == 0) {
 			popped = this.head;
-			this.head = popped.next;
+			this.head = head.next;
 		} else if (index == this.size - 1) {
 			popped = this.tail;
 			this.tail = tail.prev;
@@ -136,24 +140,23 @@ public class FullLink<T> {
 			popped = preNode.next;
 			preNode.next = popped.next;
 		}
-
-		size--;
+size--;
 		return popped.data;
 	}
 
-	public boolean deleteNode(Node<T> target) {
-		Node<T> current = this.head;
-		while (!(current == target)) {
-			current = current.next;
-			if (current == this.tail)
-				return false;
-		}
+	// private boolean deleteNode(Node<T> target) {
+	// Node<T> current = this.head;
+	// while (!(current == target)) {
+	// current = current.next;
+	// if (current == this.tail)
+	// return false;
+	// }
 
-		int nodeLocation = indexOf(current.data);
-		deleteAt(nodeLocation);
-		return true;
+	// int nodeLocation = indexOf(current.data);
+	// deleteAt(nodeLocation);
+	// return true;
 
-	}
+	// }
 
 	public boolean deleteNodeWithData(T data) {
 		int index = indexOf(data);
@@ -197,7 +200,7 @@ public class FullLink<T> {
 	}
 
 	public boolean isEmpty() {
-		return size == 0;
+		return this.size == 0;
 	}
 
 	public void clear() {

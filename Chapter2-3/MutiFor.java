@@ -1,6 +1,5 @@
 import cs1.Keyboard;
 
-
 public class MutiFor {
 	public static void main(String[] args) {
 		int rowNum, columnNum, rowLimit, limit, nextNum;
@@ -13,7 +12,7 @@ public class MutiFor {
 		for (rowNum = 0; rowNum <= rowLimit; rowNum ++) {
 
 			System.out.print(rowNum + "\t");
-		      	nextNum = 1;
+			nextNum = 1;
 
 			if (rowNum <= 1) {
 				for (columnNum = 1; columnNum <= limit; columnNum++) {
