@@ -58,8 +58,8 @@ public class FullLink<T> {
 			tail.next = newNode;
 			newNode.prev = tail;
 			this.tail = newNode;
+			size++;
 		}
-		size++;
 	}
 
 	public void insert(T data, int index) {
