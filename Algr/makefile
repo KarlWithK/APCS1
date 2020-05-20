@@ -1,9 +1,8 @@
 all:
-	@-mkdir bin
-	@-javac src/*.java -d bin
-	@-java -cp bin MergeSort
+	@-mkdir -p src/bin
+	@-javac src/*.java -d src/bin
+	@-java -cp src/bin MergeSort
 
 run: ./bin
-	@javac src/*.java -d bin
+	@javac src/*.java -d src/bin
 	@java -cp bin MergeSort
-
