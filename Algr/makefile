@@ -1,6 +1,6 @@
 JFLAGS = -g -d
 BINPATH = src/bin
-CLASSPATH = src/bin
+CLASSPATH = ".:./src/bin"
 MAIN = MergeSort
 
 all:
