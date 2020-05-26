@@ -11,6 +11,7 @@ public class Chain {
 		nums.insert(50,0);
 		System.out.println(nums);
 		Node<Integer> two = nums.getNoteAt(2);
+		System.out.println(two);
 		nums.insert(100, 1);
 		System.out.println(nums);
 		nums.changeDataAt(64, 1);
@@ -28,5 +29,6 @@ public class Chain {
 		Node<Integer> popped = nums.pop(3);
 		System.out.println(popped);
 		nums.clear();
+		System.out.println(nums);
 	}
 }

@@ -185,7 +185,7 @@ public class LList<T> {
 		String result = "";
 		Node<T> current = this.head;
 		while (current != null) {
-			result += current.toString() + " ";
+			result += current + " ";
 			current = current.getNext();
 		}
 		return result;

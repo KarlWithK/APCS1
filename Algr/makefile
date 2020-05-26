@@ -1,12 +1,17 @@
+JFLAGS = -g -d
+BINPATH = src/bin
+CLASSPATH = src/bin
+MAIN = MergeSort
+
 all:
-	@-mkdir -p src/bin
-	@-javac src/*.java -d src/bin
-	@-java -cp src/bin MergeSort
+	@-mkdir -p $(BINPATH)
+	@-javac $(JFLAGS) $(BINPATH) src/*.java
+	@-java -cp $(CLASSPATH) $(MAIN)
 
 run: ./src/bin
-	@javac src/*.java -d src/bin
-	@java -cp bin MergeSort
+	@javac $(JFLAGS) $(BINPATH) src/*.java
+	@java -cp $(CLASSPATH) $(MAIN)
 
 clean: ./src/bin
-	@rm -r ./src/bin
-	@rmdir ./src/bin
+	@rm $(BINPATH)/*
+	@rmdir $(BINPATH)
