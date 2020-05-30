@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class Chain {
 	public static void main(String[] args) {
 		LList<Integer> nums = new LList<Integer>();
@@ -30,5 +31,8 @@ public class Chain {
 		System.out.println(popped);
 		nums.clear();
 		System.out.println(nums);
+		int[] ni = { 1, 1, 1 };
+		int hello = Arrays.binarySearch(ni, 1);
+		System.out.println(hello);
 	}
 }
